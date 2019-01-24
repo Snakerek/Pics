@@ -5,7 +5,8 @@ export default class SearchBar extends Component {
 
   OnFormSubmit = event => {
     event.preventDefault(); //Powoduje że nie jest wykonywana metoda domyślna
-    console.log(this.state.term); //Przekazanie do konsoli wartości stanu komponentu
+    //console.log(this.state.term); //Przekazanie do konsoli wartości stanu komponentu
+    this.props.onSubmit(this.state.term);
   };
   render() {
     return (
