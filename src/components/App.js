@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import unsplash from '../api/unsplash'; //3rd party wykorzystywane do zapytań dla api przez ajax
-
+import ImageList from './ImageList';
 export default class App extends React.Component {
 	state = {
 		zdjecia: []
@@ -12,7 +12,7 @@ export default class App extends React.Component {
 	// [nazwa] = ([parametry]) => {[to co do wykonywania]};
 	onSearchSubmit = async (term) => {
 		//console.log(term); //wyświetlenie w konsoli wartości wyszukiwanej
-		const odpowiedz = await unsplash.get('', {
+		const odpowiedz = await unsplash.get('/search/photos', {
 			params: { query: term }
 		}); /*.then((odpowiedz) => {
 			console.log(odpowiedz.data.results);
@@ -24,7 +24,7 @@ export default class App extends React.Component {
 		return (
 			<div className="ui container" style={{ marginTop: '10px' }}>
 				<SearchBar onSubmit={this.onSearchSubmit} />
-				Znaleziono: {this.state.zdjecia.length} zdjęć.
+				<ImageList zdjecia={this.state.zdjecia} />
 			</div>
 		);
 		/* Do komponentu jako właściwość przekazujemy metodę */
